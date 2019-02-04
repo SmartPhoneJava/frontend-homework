@@ -1,19 +1,20 @@
 'use strict';
 
-const rle = function(text) {
-	if (typeof(text) != "string") {
-		return undefined;
+const rle = (text) => {
+	if (typeof(text) !== "string") {
+		return;
 	}
-	var output = "";
-	var i = 0, j = 0;
-	const length = text.length;
-	while (i < length) {
-		output += text[i];
-		for (; j < length && text[i] == text[j]; j++);
-		if (j - i > 1) {
-			output += j - i;
+	let output = text.substr(0,1);
+	let amount = text.split('').reduce(function(amount, curr) {
+		if (curr !== output.substr(-1,1)) {
+			if (amount > 1) 
+				output += amount;
+			output += curr;
+			amount = 0;
 		}
-		i = j;
-  }
-  return output;
+		return ++amount;
+	}, 0);
+	if (amount > 1) 
+		output += amount;
+	return output;
 }
