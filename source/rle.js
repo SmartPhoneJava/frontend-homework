@@ -7,8 +7,9 @@ const rle = (text) => {
 	let output = text.substr(0, 1);
 	let amount = [...text].reduce((amount, curr) => {
 		if (curr !== output.substr(-1, 1)) {
-			if (amount > 1) 
+			if (amount > 1) {
 				output += amount;
+			}
 			output += curr;
 			amount = 0;
 		}
