@@ -1,5 +1,7 @@
 'use strict';
 
+const add_amount = (output, amount) => {return amount > 1 ? output + amount : output}
+
 const rle = (text) => {
 	if (typeof text !== "string") {
 		return;
@@ -7,16 +9,12 @@ const rle = (text) => {
 	let output = text.substr(0, 1);
 	let amount = [...text].reduce((amount, curr) => {
 		if (curr !== output.substr(-1, 1)) {
-			if (amount > 1) {
-				output += amount;
-			}
-			output += curr;
+			output = add_amount(output, amount) + curr
 			amount = 0;
 		}
 		return ++amount;
 	}, 0);
-	if (amount > 1) { 
-		output += amount;
-	}
+	output = add_amount(output, amount)
+	
 	return output;
 }
