@@ -1,6 +1,6 @@
 'use strict';
 
-const addAmount = (output, amount) => {return amount > 1 ? output + amount : output}
+const addAmount = (output, amount) => amount > 1 ? output + amount : output
 
 const rle = (text) => {
 	if (typeof text !== "string") {
